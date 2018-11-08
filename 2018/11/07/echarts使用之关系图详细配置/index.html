@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="近期使用echarts的关系图，繁多的配置项让人头疼。只能一直百度，但百度依旧让人摸不到头脑。因此，基于网上的一篇”人民的名义关系图谱”关系图和实际项目需求，整理以下配置。想配置什么，就查看更多，然后通过关键字 ctrl+f 查询一下吧～如果不能满足你的需求，就移步 echarts官网查看详细配置❤️希望每个人都可以少走一些弯路❤️">
+<meta name="keywords" content="echarts">
+<meta property="og:type" content="article">
+<meta property="og:title" content="echarts使用之关系图详细配置">
+<meta property="og:url" content="https://volcano0107.github.io/2018/11/07/echarts使用之关系图详细配置/index.html">
+<meta property="og:site_name" content="橘子小窝">
+<meta property="og:description" content="近期使用echarts的关系图，繁多的配置项让人头疼。只能一直百度，但百度依旧让人摸不到头脑。因此，基于网上的一篇”人民的名义关系图谱”关系图和实际项目需求，整理以下配置。想配置什么，就查看更多，然后通过关键字 ctrl+f 查询一下吧～如果不能满足你的需求，就移步 echarts官网查看详细配置❤️希望每个人都可以少走一些弯路❤️">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://raw.githubusercontent.com/volcano0107/IMG/master/blog/echarts1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/volcano0107/IMG/master/blog/echarts2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/volcano0107/IMG/master/blog/echarts3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/volcano0107/IMG/master/blog/echarts4.png">
+<meta property="og:updated_time" content="2018-11-08T09:00:50.211Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="echarts使用之关系图详细配置">
+<meta name="twitter:description" content="近期使用echarts的关系图，繁多的配置项让人头疼。只能一直百度，但百度依旧让人摸不到头脑。因此，基于网上的一篇”人民的名义关系图谱”关系图和实际项目需求，整理以下配置。想配置什么，就查看更多，然后通过关键字 ctrl+f 查询一下吧～如果不能满足你的需求，就移步 echarts官网查看详细配置❤️希望每个人都可以少走一些弯路❤️">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/volcano0107/IMG/master/blog/echarts1.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://volcano0107.github.io/2018/11/07/echarts使用之关系图详细配置/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>echarts使用之关系图详细配置 | 橘子小窝</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">橘子小窝</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://volcano0107.github.io/2018/11/07/echarts使用之关系图详细配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="橘子麻麻">
+      <meta itemprop="description" content="狗狗的一生很短,等你的时间却最长">
+      <meta itemprop="image" content="/images/logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橘子小窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">echarts使用之关系图详细配置
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-11-07 18:17:24" itemprop="dateCreated datePublished" datetime="2018-11-07T18:17:24+08:00">2018-11-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-11-08 17:00:50" itemprop="dateModified" datetime="2018-11-08T17:00:50+08:00">2018-11-08</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>近期使用<code>echarts</code>的关系图，繁多的配置项让人头疼。只能一直百度，但百度依旧让人摸不到头脑。<br>因此，基于网上的一篇”人民的名义关系图谱”关系图和实际项目需求，整理以下配置。<br>想配置什么，就查看更多，然后通过关键字 <code>ctrl</code>+<code>f</code> 查询一下吧～如果不能满足你的需求，就移步 <a href="http://www.echartsjs.com/option3.html#series-graph" target="_blank" rel="noopener">echarts官网</a>查看详细配置<br>❤️希望每个人都可以少走一些弯路❤️<br><a id="more"></a></p>
+<h2 id="echarts版本"><a href="#echarts版本" class="headerlink" title="echarts版本"></a>echarts版本</h2><p>3.8.5<br>注：所有配置均在<code>option.series</code>下，其他配置本文暂不涉及</p>
+<h2 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q &amp; A"></a>Q &amp; A</h2><p><strong>Q</strong>: 关系图中<code>data</code>和<code>links</code>分别代表什么<br><strong>A</strong>: <code>data</code>是你的节点数据列表，<code>links</code>是节点关系数据列表。通俗来说，<code>data</code>里是一个个节点，<code>links</code>里说明节点之间的关系，也就是<code>links</code>里的每一个元素都是一条边（连接两个节点），由此构成关系图。</p>
+<p><strong>Q</strong>: 如何全局设置节点的属性？<br><strong>A</strong>: 直接设置<code>series</code>下：<code>symbolSize</code>（节点大小），<code>itemStyle</code>（节点样式）</p>
+<p><strong>Q</strong>: 如何全局设置边的属性？<br><strong>A</strong>: 直接设置<code>series</code>下：<code>lineStyle</code>（边的样式）</p>
+<p><strong>Q</strong>: 节点上的显示文字（节点标签）如何显示？<br><strong>A</strong>: 设置<code>label</code>的<code>show</code>属性为true即可</p>
+<p><strong>Q</strong>: 正常和高亮状态下，标签/样式不同，如何设置?<br><strong>A</strong>: 大多属性，如<code>itemStyle</code>/<code>label</code>/<code>lineStyle</code>/<code>edgeLabel</code>都有<code>normal</code>和<code>emphasis</code>两个状态，分别设置就可以。</p>
+<p><strong>Q</strong>: 如何设置某一节点的属性?<br><strong>A</strong>: <code>data</code>里是节点，每一个节点的基本属性大致包括</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>数据项名称</td>
+</tr>
+<tr>
+<td>value</td>
+<td>数据项的值</td>
+</tr>
+<tr>
+<td>category</td>
+<td>数据项所在类目的index，从0开始</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>该类目节点标记的图形，通过这个属性你可以设置节点显示的图标，可以是echarts提供的类型，如’circle’, ‘rect’，也可以是一个链接，或者相对地址，或者base64图片</td>
+</tr>
+<tr>
+<td>symbolSize</td>
+<td>节点显示图标的大小</td>
+</tr>
+<tr>
+<td>itemStyle</td>
+<td>节点样式</td>
+</tr>
+<tr>
+<td>label</td>
+<td>节点标签样式</td>
+</tr>
+</tbody>
+</table>
+<p>一般来说，我们会把<code>symbolSize</code>的值设置成与<code>value</code>有关系的值，比如<code>symbolSize = value * 2</code>,具体还需要看实际需求</p>
+<p><strong>Q</strong>: 为什么我的关系图显示就像这样子，一团糟？<br><img src="https://raw.githubusercontent.com/volcano0107/IMG/master/blog/echarts1.png" width="300px"><br><strong>A</strong>: 尝试一下设置<code>series</code>下的<code>force</code>属性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">force: &#123;</span><br><span class="line">    repusion: 1000 //节点间的斥力因子，默认是50</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>设置后效果图<br><img src="https://raw.githubusercontent.com/volcano0107/IMG/master/blog/echarts2.png" width="600px"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">force: &#123;</span><br><span class="line">    repusion: 1000, // 节点间的斥力因子，默认是50</span><br><span class="line">    edgeLength: [100,500] // 边的两个节点之间的距离,默认是[10,50]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>设置后效果图如下，具体还需要根据实际需求修改值的配置<br><img src="https://raw.githubusercontent.com/volcano0107/IMG/master/blog/echarts3.png" width="600px"></p>
+<p><strong>Q</strong>: 为什么我的关系图是直线型的？像这样<br><img src="https://raw.githubusercontent.com/volcano0107/IMG/master/blog/echarts4.png" width="400px"><br><strong>A</strong>: 通过设置边的线条样式<code>lineStyle</code>下的<code>curveness</code> (边的曲度）实现曲边</p>
+<p> 结合以上图片，说明一下两个官方术语<br> <code>label</code>图形上的文本标签，就是关系图上人物的名字<br> <code>edgeLabel</code>关系标签（边标签），就是两个人物之间的关系，如母女，姐妹，下属</p>
+<p><strong>Q</strong>: 我有一个需求，点击某个按钮，要高亮某几条指定的关系线怎么办？<br><strong>A</strong>: 官网上有一个方法将指定的节点以及其所有邻接节点高亮<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">myChart.dispatchAction(&#123;</span><br><span class="line">    type: <span class="string">'focusNodeAdjacency'</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用 seriesId 或 seriesIndex 或 seriesName 来定位 series.</span></span><br><span class="line">    seriesId: <span class="string">'xxx'</span>,</span><br><span class="line">    seriesIndex: <span class="number">0</span>,</span><br><span class="line">    seriesName: <span class="string">'nnn'</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用 dataIndex 来定位节点。</span></span><br><span class="line">    dataIndex: <span class="number">12</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>根据这个方法，在源码中新增一个方法，高亮指定的边（通过边在links数组所属的下标值）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">myFocusEdge: <span class="function"><span class="keyword">function</span> (<span class="params">seriesModel, ecModel, api, payload</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> data = <span class="keyword">this</span>._model.getData();</span><br><span class="line">    <span class="keyword">var</span> graph = data.graph;</span><br><span class="line">    <span class="keyword">var</span> my_edge = payload.edgeIndexs; <span class="comment">// 数组</span></span><br><span class="line">    my_edge.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">edge_item</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> edgeDataIndex = edge_item;</span><br><span class="line">        <span class="keyword">var</span> edge = graph.getEdgeByIndex(edgeDataIndex);</span><br><span class="line">        <span class="keyword">if</span> (edge) &#123;</span><br><span class="line">            fadeInItem(edge, lineOpacityPath);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注册：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">registerAction(&#123;</span><br><span class="line">    type: <span class="string">'myFocusEdge'</span>,</span><br><span class="line">    event: <span class="string">'myFocusEdge'</span>,</span><br><span class="line">    update: <span class="string">'series.graph:myFocusEdge'</span></span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>如何调用？<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">myChart.dispatchAction(&#123;</span><br><span class="line">    type: <span class="string">'myFocusEdge'</span>,</span><br><span class="line">    <span class="comment">// 使用 seriesId 或 seriesIndex 或 seriesName 来定位 series.</span></span><br><span class="line">    seriesId: <span class="string">'xxx'</span>,</span><br><span class="line">    seriesIndex: <span class="number">0</span>,</span><br><span class="line">    seriesName: <span class="string">'nnn'</span>,</span><br><span class="line">    <span class="comment">// 使用 edgeIndexs 来定位节点。</span></span><br><span class="line">    edgeIndexs: [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>相应的，增加一个方法，取消高亮指定的边，调用方法基本同上（需要改一下方法名哦）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">myUnFocusEdge: <span class="function"><span class="keyword">function</span> (<span class="params">seriesModel, ecModel, api, payload</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> graph = <span class="keyword">this</span>._model.getData().graph;</span><br><span class="line">    <span class="keyword">var</span> my_edge = payload.edgeIndexs;<span class="comment">// 数组</span></span><br><span class="line">    my_edge.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">edge_item</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> edgeDataIndex = edge_item;</span><br><span class="line">        <span class="keyword">var</span> edge = graph.getEdgeByIndex(edgeDataIndex);</span><br><span class="line">        <span class="keyword">if</span> (edge) &#123;</span><br><span class="line">            fadeOutItem(edge, lineOpacityPath);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="DEMO"><a href="#DEMO" class="headerlink" title="DEMO"></a>DEMO</h2><h3 id="html"><a href="#html" class="headerlink" title="html"></a>html</h3><p>提供一个容器<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"chart"</span> <span class="attr">style</span>=<span class="string">"width:800px;height:800px"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="js"><a href="#js" class="headerlink" title="js"></a>js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> myChart = echarts.init(<span class="built_in">document</span>.getElementById(<span class="string">'chart'</span>))</span><br><span class="line"><span class="keyword">const</span> option = &#123;</span><br><span class="line">     title: &#123; <span class="attr">text</span>: <span class="string">'人民的名义关系图谱'</span> &#125;,</span><br><span class="line">     tooltip: &#123;</span><br><span class="line">         formatter: <span class="function"><span class="keyword">function</span> (<span class="params">x</span>) </span>&#123;</span><br><span class="line">             <span class="keyword">return</span> x.data.des;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;,</span><br><span class="line">     series: [</span><br><span class="line">         &#123;</span><br><span class="line">             type: <span class="string">'graph'</span>,</span><br><span class="line">             <span class="comment">// 图的布局：可选： none circular(环形布局) force（力引导布局）</span></span><br><span class="line">             layout: <span class="string">'force'</span>,</span><br><span class="line">             <span class="comment">// 关系图节点标记的大小</span></span><br><span class="line">             symbolSize: <span class="number">40</span>,</span><br><span class="line">             <span class="comment">// 是否开启鼠标缩放和平移漫游</span></span><br><span class="line">             roam: <span class="literal">true</span>,</span><br><span class="line">             <span class="comment">// 边两端的标记类型</span></span><br><span class="line">             edgeSymbol: [<span class="string">'circle'</span>, <span class="string">'arrow'</span>],</span><br><span class="line">             <span class="comment">// 边两端的标记大小</span></span><br><span class="line">             edgeSymbolSize: [<span class="number">4</span>, <span class="number">10</span>],</span><br><span class="line">             <span class="comment">// 力引导布局相关的配置项</span></span><br><span class="line">             force: &#123;</span><br><span class="line">                 <span class="comment">// 节点之间的斥力因子，值越大，斥力越大。通俗来说，值越大，两个节点之间的距离越大，即关系边的长度越长</span></span><br><span class="line">                 repulsion: <span class="number">1000</span>,</span><br><span class="line">                 <span class="comment">// 边的两个节点之间的距离，以下设置：值最大的边长度会趋向于10，值最小的边长度会趋向于50</span></span><br><span class="line">                 <span class="comment">// edgeLength: [10, 50]</span></span><br><span class="line">             &#125;,</span><br><span class="line">             <span class="comment">// 节点是否可拖拽</span></span><br><span class="line">             draggable: <span class="literal">true</span>,</span><br><span class="line">             <span class="comment">// 节点样式</span></span><br><span class="line">             itemStyle: &#123;</span><br><span class="line">                 normal: &#123;</span><br><span class="line">                     color: <span class="string">'#2f4554'</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 emphasis: &#123;</span><br><span class="line">                     borderColor: <span class="string">'#fff'</span>,</span><br><span class="line">                     borderWidth: <span class="number">1</span>,</span><br><span class="line">                     shadowBlur: <span class="number">10</span>,</span><br><span class="line">                     shadowColor: <span class="string">'rgba(0, 0, 0, 0.8)'</span></span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;,</span><br><span class="line">             <span class="comment">// 关系边的公用线条样式</span></span><br><span class="line">             lineStyle: &#123;</span><br><span class="line">                 normal: &#123;</span><br><span class="line">                     textStyle: &#123;</span><br><span class="line">                         fontSize: <span class="number">20</span></span><br><span class="line">                     &#125;,</span><br><span class="line">                     width: <span class="number">2</span>,</span><br><span class="line">                     color: <span class="string">'#4b565b'</span>,</span><br><span class="line">                     <span class="comment">// 边的曲度</span></span><br><span class="line">                     curveness: <span class="number">0.1</span></span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;,</span><br><span class="line">             <span class="comment">// 边的标签样式</span></span><br><span class="line">             edgeLabel: &#123;</span><br><span class="line">                 normal: &#123;</span><br><span class="line">                     show: <span class="literal">true</span>,</span><br><span class="line">                     formatter: <span class="function"><span class="keyword">function</span> (<span class="params">x</span>) </span>&#123;</span><br><span class="line">                         <span class="keyword">return</span> x.data.name;</span><br><span class="line">                     &#125;</span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;,</span><br><span class="line">             <span class="comment">// 节点标签的样式</span></span><br><span class="line">             label: &#123;</span><br><span class="line">                 normal: &#123;</span><br><span class="line">                     show: <span class="literal">true</span>,</span><br><span class="line">                     textStyle: &#123;</span><br><span class="line">                     &#125;</span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;,</span><br><span class="line">             data: [</span><br><span class="line">                 &#123;</span><br><span class="line">                     name: <span class="string">'侯亮平'</span>,</span><br><span class="line">                     des: <span class="string">'最高检反贪局侦查处处长，汉东省人民检察院副检察长兼反贪局局长。&lt;br/&gt;经过与腐败违法分子的斗争，最终将一批腐败分子送上了审判台，&lt;br/&gt;正义战胜邪恶，自己也迎来了成长。'</span>,</span><br><span class="line">                     symbolSize: <span class="number">80</span>,</span><br><span class="line">                     itemStyle: &#123;</span><br><span class="line">                         normal: &#123;</span><br><span class="line">                             color: <span class="string">'#c23531'</span></span><br><span class="line">                         &#125;</span><br><span class="line">                     &#125;</span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     name: <span class="string">'李达康'</span>,</span><br><span class="line">                     des: <span class="string">'汉东省省委常委，京州市市委书记。是一个正义无私的好官。&lt;br/&gt;但为人过于爱惜自己的羽毛，对待身边的亲人和朋友显得有些无情。'</span>,</span><br><span class="line">                     itemStyle: &#123;</span><br><span class="line">                         normal: &#123;</span><br><span class="line">                             color: <span class="string">'#c23531'</span></span><br><span class="line">                         &#125;</span><br><span class="line">                     &#125;</span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     name: <span class="string">'祁同伟'</span>,</span><br><span class="line">                     des: <span class="string">'汉东省公安厅厅长'</span>,</span><br><span class="line">                     symbolSize: <span class="number">80</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                     name: <span class="string">'陈岩石'</span>,</span><br><span class="line">                     des: <span class="string">'离休干部、汉东省检察院前常务副检察长。充满正义，平凡而普通的共 产 党人。&lt;br/&gt;对大老虎赵立春，以各种形式执着举报了十二年。&lt;br/&gt;在这场关系党和国家生死存亡的斗争中，老人家以耄耋高龄，&lt;br/&gt;义无反顾地背起了炸 药包，在反腐胜利前夕因病去世。'</span>,</span><br><span class="line">                     itemStyle: &#123;</span><br><span class="line">                         normal: &#123;</span><br><span class="line">                             color: <span class="string">'#c23531'</span></span><br><span class="line">                         &#125;</span><br><span class="line">                     &#125;</span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     name: <span class="string">'陆亦可'</span>,</span><br><span class="line">                     des: <span class="string">'汉东省检察院反贪局一处处长'</span>,</span><br><span class="line">                     itemStyle: &#123;</span><br><span class="line">                         normal: &#123;</span><br><span class="line">                             color: <span class="string">'#c23531'</span></span><br><span class="line">                         &#125;</span><br><span class="line">                     &#125;</span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     name: <span class="string">'高育良'</span>,</span><br><span class="line">                     des: <span class="string">'汉东省省委副书记兼政法委书记。年近六十，是一个擅长太极功夫的官场老手。侯亮平、陈海和祁同伟是其学生。'</span>,</span><br><span class="line">                     symbolSize: <span class="number">80</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     name: <span class="string">'沙瑞金'</span>,</span><br><span class="line">                     des: <span class="string">'汉东省省委书记'</span>,</span><br><span class="line">                     itemStyle: &#123;</span><br><span class="line">                         normal: &#123;</span><br><span class="line">                             color: <span class="string">'#c23531'</span></span><br><span class="line">                         &#125;</span><br><span class="line">                     &#125;</span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     name: <span class="string">'高小琴'</span>,</span><br><span class="line">                     des: <span class="string">'山水集团董事长，是一位叱咤于政界和商界的风云人物，处事圆滑、精明干练。'</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     name: <span class="string">'高小凤'</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     name: <span class="string">'赵东来'</span>,</span><br><span class="line">                     des: <span class="string">'汉东省京州市公安局局长，充满正义，整治恶势力，&lt;br/&gt;在与检察部门的合作中从最初的质疑到之后的通力配合。'</span>,</span><br><span class="line">                     itemStyle: &#123;</span><br><span class="line">                         normal: &#123;</span><br><span class="line">                             color: <span class="string">'#c23531'</span></span><br><span class="line">                         &#125;</span><br><span class="line">                     &#125;</span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     name: <span class="string">'程度'</span>,</span><br><span class="line">                     des: <span class="string">'汉东省京州市公安局光明区分局局长，因犯错误，被李达康书记和赵东来局长点名要清除公安队伍。&lt;br/&gt;但在高小琴的帮助下，祁同伟调他当上了省公安厅办公室副主任。&lt;br/&gt;尽管程度逃避了所有罪责，上面也有人保他，&lt;br/&gt;但最终还是在反贪局局长侯亮平的缜密侦查下被绳之于法。'</span>,</span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     name: <span class="string">'吴惠芬'</span>,</span><br><span class="line">                     des: <span class="string">'汉东省省委副书记高育良的妻子，汉东大学明史教授。'</span>,</span><br><span class="line">                     itemStyle: &#123;</span><br><span class="line">                         normal: &#123;</span><br><span class="line">                             color: <span class="string">'#c23531'</span></span><br><span class="line">                         &#125;</span><br><span class="line">                     &#125;</span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     name: <span class="string">'赵瑞龙'</span>,</span><br><span class="line">                     des: <span class="string">'副国级人物赵立春的公子哥，官二代，打着老子的旗子，&lt;br/&gt;黑白两道通吃，可谓呼风唤雨，权倾一时。'</span>,</span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     name: <span class="string">'赵立春'</span>,</span><br><span class="line">                     des: <span class="string">'副国级领导人，曾经的改革闯将，在权利面前，显得极其渺小。'</span>,</span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     name: <span class="string">'陈海'</span>,</span><br><span class="line">                     itemStyle: &#123;</span><br><span class="line">                         normal: &#123;</span><br><span class="line">                             color: <span class="string">'#c23531'</span></span><br><span class="line">                         &#125;</span><br><span class="line">                     &#125;</span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     name: <span class="string">'梁璐'</span>,</span><br><span class="line">                     itemStyle: &#123;</span><br><span class="line">                         normal: &#123;</span><br><span class="line">                             color: <span class="string">'#c23531'</span></span><br><span class="line">                         &#125;</span><br><span class="line">                     &#125;</span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     name: <span class="string">'刘新建'</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     name: <span class="string">'欧阳菁'</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     name: <span class="string">'吴心怡'</span>,</span><br><span class="line">                     itemStyle: &#123;</span><br><span class="line">                         normal: &#123;</span><br><span class="line">                             color: <span class="string">'#c23531'</span></span><br><span class="line">                         &#125;</span><br><span class="line">                     &#125;</span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     name: <span class="string">'蔡成功'</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     name: <span class="string">'丁义珍'</span></span><br><span class="line">                 &#125;</span><br><span class="line">             ],</span><br><span class="line">             links: [</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'高育良'</span>,</span><br><span class="line">                     target: <span class="string">'侯亮平'</span>,</span><br><span class="line">                     name: <span class="string">'师生'</span>,</span><br><span class="line">                     des: <span class="string">'侯亮平是高育良的得意门生'</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'高育良'</span>,</span><br><span class="line">                     target: <span class="string">'祁同伟'</span>,</span><br><span class="line">                     name: <span class="string">'师生'</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'赵立春'</span>,</span><br><span class="line">                     target: <span class="string">'高育良'</span>,</span><br><span class="line">                     name: <span class="string">"前领导"</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'赵立春'</span>,</span><br><span class="line">                     target: <span class="string">'赵瑞龙'</span>,</span><br><span class="line">                     name: <span class="string">"父子"</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'赵立春'</span>,</span><br><span class="line">                     target: <span class="string">'刘新建'</span>,</span><br><span class="line">                     name: <span class="string">"前部队下属"</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'李达康'</span>,</span><br><span class="line">                     target: <span class="string">'赵立春'</span>,</span><br><span class="line">                     name: <span class="string">"前任秘书"</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'祁同伟'</span>,</span><br><span class="line">                     target: <span class="string">'高小琴'</span>,</span><br><span class="line">                     name: <span class="string">"情人"</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'陈岩石'</span>,</span><br><span class="line">                     target: <span class="string">'陈海'</span>,</span><br><span class="line">                     name: <span class="string">"父子"</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'陆亦可'</span>,</span><br><span class="line">                     target: <span class="string">'陈海'</span>,</span><br><span class="line">                     name: <span class="string">"属下"</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'沙瑞金'</span>,</span><br><span class="line">                     target: <span class="string">'陈岩石'</span>,</span><br><span class="line">                     name: <span class="string">"故人"</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'祁同伟'</span>,</span><br><span class="line">                     target: <span class="string">'陈海'</span>,</span><br><span class="line">                     name: <span class="string">"师哥"</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'祁同伟'</span>,</span><br><span class="line">                     target: <span class="string">'侯亮平'</span>,</span><br><span class="line">                     name: <span class="string">"师哥"</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'侯亮平'</span>,</span><br><span class="line">                     target: <span class="string">'陈海'</span>,</span><br><span class="line">                     name: <span class="string">"同学，生死朋友"</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'高育良'</span>,</span><br><span class="line">                     target: <span class="string">'吴惠芬'</span>,</span><br><span class="line">                     name: <span class="string">"夫妻"</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'陈海'</span>,</span><br><span class="line">                     target: <span class="string">'赵东来'</span>,</span><br><span class="line">                     name: <span class="string">"朋友"</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'高小琴'</span>,</span><br><span class="line">                     target: <span class="string">'高小凤'</span>,</span><br><span class="line">                     name: <span class="string">"双胞胎"</span>,</span><br><span class="line">                     symbolSize: <span class="string">'1'</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'赵东来'</span>,</span><br><span class="line">                     target: <span class="string">'陆亦可'</span>,</span><br><span class="line">                     name: <span class="string">"爱慕"</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'祁同伟'</span>,</span><br><span class="line">                     target: <span class="string">'程度'</span>,</span><br><span class="line">                     name: <span class="string">"领导"</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'高育良'</span>,</span><br><span class="line">                     target: <span class="string">'高小凤'</span>,</span><br><span class="line">                     name: <span class="string">"情人"</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'赵瑞龙'</span>,</span><br><span class="line">                     target: <span class="string">'祁同伟'</span>,</span><br><span class="line">                     name: <span class="string">"勾结"</span>,</span><br><span class="line">                     symbolSize: <span class="string">'1'</span>,</span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'李达康'</span>,</span><br><span class="line">                     target: <span class="string">'赵东来'</span>,</span><br><span class="line">                     name: <span class="string">"领导"</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'赵瑞龙'</span>,</span><br><span class="line">                     target: <span class="string">'程度'</span>,</span><br><span class="line">                     name: <span class="string">"领导"</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'沙瑞金'</span>,</span><br><span class="line">                     target: <span class="string">'李达康'</span>,</span><br><span class="line">                     name: <span class="string">"领导"</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'沙瑞金'</span>,</span><br><span class="line">                     target: <span class="string">'高育良'</span>,</span><br><span class="line">                     name: <span class="string">"领导"</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'祁同伟'</span>,</span><br><span class="line">                     target: <span class="string">'梁璐'</span>,</span><br><span class="line">                     name: <span class="string">"夫妻"</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'吴惠芬'</span>,</span><br><span class="line">                     target: <span class="string">'梁璐'</span>,</span><br><span class="line">                     name: <span class="string">"朋友"</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'李达康'</span>,</span><br><span class="line">                     target: <span class="string">'欧阳菁'</span>,</span><br><span class="line">                     name: <span class="string">"夫妻"</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'赵瑞龙'</span>,</span><br><span class="line">                     target: <span class="string">'刘新建'</span>,</span><br><span class="line">                     name: <span class="string">"洗钱工具"</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'赵瑞龙'</span>,</span><br><span class="line">                     target: <span class="string">'高小琴'</span>,</span><br><span class="line">                     name: <span class="string">"勾结，腐化"</span>,</span><br><span class="line">                     symbolSize: <span class="string">'1'</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'赵瑞龙'</span>,</span><br><span class="line">                     target: <span class="string">'高小凤'</span>,</span><br><span class="line">                     name: <span class="string">"腐化"</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'吴心怡'</span>,</span><br><span class="line">                     target: <span class="string">'陆亦可'</span>,</span><br><span class="line">                     name: <span class="string">"母女"</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'吴心怡'</span>,</span><br><span class="line">                     target: <span class="string">'吴惠芬'</span>,</span><br><span class="line">                     name: <span class="string">"姐妹"</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'蔡成功'</span>,</span><br><span class="line">                     target: <span class="string">'侯亮平'</span>,</span><br><span class="line">                     name: <span class="string">"发小"</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'蔡成功'</span>,</span><br><span class="line">                     target: <span class="string">'欧阳菁'</span>,</span><br><span class="line">                     name: <span class="string">"举报"</span>,</span><br><span class="line">                     lineStyle: &#123;</span><br><span class="line">                         normal: &#123;</span><br><span class="line">                             type: <span class="string">'dotted'</span>,</span><br><span class="line">                             color: <span class="string">'#000'</span></span><br><span class="line">                         &#125;</span><br><span class="line">                     &#125;</span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'欧阳菁'</span>,</span><br><span class="line">                     target: <span class="string">'刘新建'</span>,</span><br><span class="line">                     name: <span class="string">"举报"</span>,</span><br><span class="line">                     lineStyle: &#123;</span><br><span class="line">                         normal: &#123;</span><br><span class="line">                             type: <span class="string">'dotted'</span>,</span><br><span class="line">                             color: <span class="string">'#000'</span></span><br><span class="line">                         &#125;</span><br><span class="line">                     &#125;</span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'刘新建'</span>,</span><br><span class="line">                     target: <span class="string">'赵瑞龙'</span>,</span><br><span class="line">                     name: <span class="string">"举报"</span>,</span><br><span class="line">                     lineStyle: &#123;</span><br><span class="line">                         normal: &#123;</span><br><span class="line">                             type: <span class="string">'dotted'</span>,</span><br><span class="line">                             color: <span class="string">'#000'</span></span><br><span class="line">                         &#125;</span><br><span class="line">                     &#125;</span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'李达康'</span>,</span><br><span class="line">                     target: <span class="string">'丁义珍'</span>,</span><br><span class="line">                     name: <span class="string">"领导"</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'高小琴'</span>,</span><br><span class="line">                     target: <span class="string">'丁义珍'</span>,</span><br><span class="line">                     name: <span class="string">"策划出逃"</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'祁同伟'</span>,</span><br><span class="line">                     target: <span class="string">'丁义珍'</span>,</span><br><span class="line">                     name: <span class="string">"勾结"</span></span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     source: <span class="string">'赵瑞龙'</span>,</span><br><span class="line">                     target: <span class="string">'丁义珍'</span>,</span><br><span class="line">                     name: <span class="string">"勾结"</span></span><br><span class="line">                 &#125;]</span><br><span class="line">         &#125;</span><br><span class="line">     ]</span><br><span class="line"> &#125;</span><br><span class="line"> myChart.setOption(option)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/echarts/" rel="tag"># echarts</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/07/element-ui-前端分页实现/" rel="next" title="element-ui 前端分页实现">
+                <i class="fa fa-chevron-left"></i> element-ui 前端分页实现
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/logo.jpg"
+                alt="橘子麻麻" />
+            
+              <p class="site-author-name" itemprop="name">橘子麻麻</p>
+              <p class="site-description motion-element" itemprop="description">狗狗的一生很短,等你的时间却最长</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#echarts版本"><span class="nav-number">1.</span> <span class="nav-text">echarts版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q-amp-A"><span class="nav-number">2.</span> <span class="nav-text">Q &amp; A</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DEMO"><span class="nav-number">3.</span> <span class="nav-text">DEMO</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#html"><span class="nav-number">3.1.</span> <span class="nav-text">html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#js"><span class="nav-number">3.2.</span> <span class="nav-text">js</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">橘子麻麻</span>
+
+  
+
+  
+</div>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

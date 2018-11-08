@@ -108,19 +108,19 @@
 
 
 
-  <meta name="description" content="由来一般情况下，获取表格数据时，我们会根据pageSize(每页数据量)和pageIndex(当前页数)进行查询，无论是pageSize还是pageIndex改变，我们都重新调接口获取数据，进行渲染。但是，有些情况下，数据一次性全部给到前端，前端需要对数据进行过滤并渲染。此次主要基于elment-ui的分页进行举例，分页的基本思想是一致的。">
+  <meta name="description" content="一般情况下，获取表格数据时，我们会根据pageSize(每页数据量)和pageIndex(当前页数)进行查询，无论是pageSize还是pageIndex改变，我们都重新调接口获取数据，进行渲染。但是，有些情况下，数据一次性全部给到前端，前端需要对数据进行过滤并渲染。此次主要基于elment-ui的分页进行举例，分页的基本思想是一致的。">
 <meta name="keywords" content="element">
 <meta property="og:type" content="article">
 <meta property="og:title" content="element-ui 前端分页实现">
 <meta property="og:url" content="https://volcano0107.github.io/2018/11/07/element-ui-前端分页实现/index.html">
 <meta property="og:site_name" content="橘子小窝">
-<meta property="og:description" content="由来一般情况下，获取表格数据时，我们会根据pageSize(每页数据量)和pageIndex(当前页数)进行查询，无论是pageSize还是pageIndex改变，我们都重新调接口获取数据，进行渲染。但是，有些情况下，数据一次性全部给到前端，前端需要对数据进行过滤并渲染。此次主要基于elment-ui的分页进行举例，分页的基本思想是一致的。">
+<meta property="og:description" content="一般情况下，获取表格数据时，我们会根据pageSize(每页数据量)和pageIndex(当前页数)进行查询，无论是pageSize还是pageIndex改变，我们都重新调接口获取数据，进行渲染。但是，有些情况下，数据一次性全部给到前端，前端需要对数据进行过滤并渲染。此次主要基于elment-ui的分页进行举例，分页的基本思想是一致的。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://raw.githubusercontent.com/volcano0107/IMG/master/blog/element-ui1.png">
-<meta property="og:updated_time" content="2018-11-07T08:13:27.452Z">
+<meta property="og:updated_time" content="2018-11-07T10:46:57.291Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="element-ui 前端分页实现">
-<meta name="twitter:description" content="由来一般情况下，获取表格数据时，我们会根据pageSize(每页数据量)和pageIndex(当前页数)进行查询，无论是pageSize还是pageIndex改变，我们都重新调接口获取数据，进行渲染。但是，有些情况下，数据一次性全部给到前端，前端需要对数据进行过滤并渲染。此次主要基于elment-ui的分页进行举例，分页的基本思想是一致的。">
+<meta name="twitter:description" content="一般情况下，获取表格数据时，我们会根据pageSize(每页数据量)和pageIndex(当前页数)进行查询，无论是pageSize还是pageIndex改变，我们都重新调接口获取数据，进行渲染。但是，有些情况下，数据一次性全部给到前端，前端需要对数据进行过滤并渲染。此次主要基于elment-ui的分页进行举例，分页的基本思想是一致的。">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/volcano0107/IMG/master/blog/element-ui1.png">
 
 
@@ -308,10 +308,10 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">element-ui 前端分页实现
+          <h2 class="post-title" itemprop="name headline">element-ui 前端分页实现
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -333,7 +333,7 @@
                 
               
 
-              <time title="Created: 2018-11-07 15:31:12 / Modified: 16:13:27" itemprop="dateCreated datePublished" datetime="2018-11-07T15:31:12+08:00">2018-11-07</time>
+              <time title="Created: 2018-11-07 15:31:12 / Modified: 18:46:57" itemprop="dateCreated datePublished" datetime="2018-11-07T15:31:12+08:00">2018-11-07</time>
             
 
             
@@ -379,7 +379,7 @@
       
 
       
-        <h3 id="由来"><a href="#由来" class="headerlink" title="由来"></a>由来</h3><p>一般情况下，获取表格数据时，我们会根据<code>pageSize</code>(每页数据量)和<code>pageIndex</code>(当前页数)进行查询，无论是<code>pageSize</code>还是<code>pageIndex</code>改变，我们都重新调接口获取数据，进行渲染。<br>但是，有些情况下，数据一次性全部给到前端，前端需要对数据进行过滤并渲染。<br>此次主要基于<code>elment-ui</code>的分页进行举例，分页的基本思想是一致的。<br><a id="more"></a></p>
+        <p>一般情况下，获取表格数据时，我们会根据<code>pageSize</code>(每页数据量)和<code>pageIndex</code>(当前页数)进行查询，无论是<code>pageSize</code>还是<code>pageIndex</code>改变，我们都重新调接口获取数据，进行渲染。<br>但是，有些情况下，数据一次性全部给到前端，前端需要对数据进行过滤并渲染。<br>此次主要基于<code>elment-ui</code>的分页进行举例，分页的基本思想是一致的。<br><a id="more"></a></p>
 <h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><p><code>element-ui</code><br><code>vue</code></p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><h4 id="html"><a href="#html" class="headerlink" title="html"></a>html</h4><p>代码如下，有任何基础不明白可以看 <a href="http://element-cn.eleme.io/#/zh-CN" target="_blank" rel="noopener">element-ui中文网站</a><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-table</span></span></span><br><span class="line"><span class="tag">        <span class="attr">:data</span>=<span class="string">"tableData"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">border</span></span></span><br><span class="line"><span class="tag">        <span class="attr">style</span>=<span class="string">"width: 50%;"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">height</span>=<span class="string">"289"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-table-column</span></span></span><br><span class="line"><span class="tag">            <span class="attr">prop</span>=<span class="string">"id"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">label</span>=<span class="string">"ID"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-table-column</span></span></span><br><span class="line"><span class="tag">            <span class="attr">prop</span>=<span class="string">"name"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">label</span>=<span class="string">"用户名"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">el-table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-pagination</span></span></span><br><span class="line"><span class="tag">        @<span class="attr">size-change</span>=<span class="string">"handleSizeChange"</span></span></span><br><span class="line"><span class="tag">        @<span class="attr">current-change</span>=<span class="string">"handleCurrentChange"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">:current-page</span>=<span class="string">"currentPage"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">:page-sizes</span>=<span class="string">"[5,10,15,20]"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">:page-size</span>=<span class="string">"pageSize"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">layout</span>=<span class="string">"total,sizes,prev,pager,next,jumper"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">:total</span>=<span class="string">"total"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">el-pagination</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <h4 id="js"><a href="#js" class="headerlink" title="js"></a>js</h4><p>主要针对<code>pageSize</code>和<code>currentPage</code>改变做数据过滤<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">'#app'</span>,</span><br><span class="line">    data () &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="comment">// 当前页</span></span><br><span class="line">            currentPage: <span class="number">1</span>,</span><br><span class="line">            <span class="comment">// 每页数据量</span></span><br><span class="line">            pageSize: <span class="number">5</span>,</span><br><span class="line">            <span class="comment">// 数据总量</span></span><br><span class="line">            total: <span class="number">60</span>,</span><br><span class="line">            <span class="comment">// 原始数据</span></span><br><span class="line">            originData: [],</span><br><span class="line">            <span class="comment">// 渲染数据</span></span><br><span class="line">            tableData: []</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    created () &#123;</span><br><span class="line">        <span class="comment">// 模拟数据</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">60</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">this</span>.originData.push(&#123;</span><br><span class="line">                id: i,</span><br><span class="line">                name: <span class="string">'user'</span>+i</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    mounted () &#123;</span><br><span class="line">        <span class="comment">// 初始状态渲染</span></span><br><span class="line">        <span class="keyword">this</span>.filterList(<span class="number">0</span>,<span class="keyword">this</span>.pageSize)</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        <span class="comment">// 改变每页条数</span></span><br><span class="line">        handleSizeChange (size) &#123;</span><br><span class="line">            <span class="keyword">this</span>.pageSize = size</span><br><span class="line">            <span class="comment">// 每次改变每页条数后，都设置当前页为第一页</span></span><br><span class="line">            <span class="keyword">this</span>.currentPage = <span class="number">1</span></span><br><span class="line">            <span class="keyword">this</span>.filterList(<span class="number">0</span>,<span class="keyword">this</span>.pageSize)</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">// 改变当前页</span></span><br><span class="line">        handleCurrentChange (current) &#123;</span><br><span class="line">            <span class="comment">// 设置当前页为选择的页数，element不会自动设置</span></span><br><span class="line">            <span class="keyword">this</span>.currentPage = current</span><br><span class="line">            <span class="keyword">let</span> start = (current - <span class="number">1</span>)* <span class="keyword">this</span>.pageSize</span><br><span class="line">            <span class="keyword">let</span> end = current * <span class="keyword">this</span>.pageSize</span><br><span class="line">            <span class="keyword">this</span>.filterList(start, end)</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">// 过滤数据，start为起始下标，end为结束下标，我们需要的数据是[start,end)</span></span><br><span class="line">        filterList (start, end) &#123;</span><br><span class="line">            <span class="comment">// 每次重新渲染时，要把数组置空</span></span><br><span class="line">            <span class="keyword">this</span>.tableData = []</span><br><span class="line">            <span class="keyword">for</span> (;start &lt; end; start++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(<span class="keyword">this</span>.originData[start])&#123;</span><br><span class="line">                    <span class="keyword">this</span>.tableData.push(<span class="keyword">this</span>.originData[start])</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
@@ -426,6 +426,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/07/echarts使用之关系图详细配置/" rel="prev" title="echarts使用之关系图详细配置">
+                echarts使用之关系图详细配置 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -499,7 +503,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -520,7 +524,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">3</span>
+                      
+                    
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -556,7 +562,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#由来"><span class="nav-number">1.</span> <span class="nav-text">由来</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖"><span class="nav-number">2.</span> <span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#html"><span class="nav-number">3.1.</span> <span class="nav-text">html</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#js"><span class="nav-number">3.2.</span> <span class="nav-text">js</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#效果图"><span class="nav-number">4.</span> <span class="nav-text">效果图</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖"><span class="nav-number">1.</span> <span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#html"><span class="nav-number">2.1.</span> <span class="nav-text">html</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#js"><span class="nav-number">2.2.</span> <span class="nav-text">js</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#效果图"><span class="nav-number">3.</span> <span class="nav-text">效果图</span></a></li></ol></div>
             
 
           </div>
@@ -588,17 +594,13 @@
 </div>
 
 
-
-
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
-
-
-
-  <span class="post-meta-divider">|</span>
+  
 
 
 
-  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Pisces</a> v6.4.2</div>
+
+
+
 
 
 
