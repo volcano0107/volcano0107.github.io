@@ -108,24 +108,25 @@
 
 
 
-  <meta name="description" content="狗狗的一生很短,等你的时间却最长">
-<meta name="keywords" content="前端">
-<meta property="og:type" content="website">
-<meta property="og:title" content="橘子小窝">
-<meta property="og:url" content="https://volcano0107.github.io/index.html">
+  <meta name="description" content="最近写了个select组件，添加了几个功能，如option过滤，设置默认值，添加change方法告知父组件等。然后，提交后被返工了 💔现在，重新审视自己的代码。发现最大的问题就是代码冗余：我并没有在父组件上使用v-model,所有的数据改变都是通过子组件change调用父组件方法，再去改变父组件的数据。如果有多个select，那就需要添加多个方法，接收每个select改变后的值，再改变父组件的数">
+<meta name="keywords" content="vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在组件上使用v-model">
+<meta property="og:url" content="https://volcano0107.github.io/2018/11/14/在组件上使用v-model/index.html">
 <meta property="og:site_name" content="橘子小窝">
-<meta property="og:description" content="狗狗的一生很短,等你的时间却最长">
+<meta property="og:description" content="最近写了个select组件，添加了几个功能，如option过滤，设置默认值，添加change方法告知父组件等。然后，提交后被返工了 💔现在，重新审视自己的代码。发现最大的问题就是代码冗余：我并没有在父组件上使用v-model,所有的数据改变都是通过子组件change调用父组件方法，再去改变父组件的数据。如果有多个select，那就需要添加多个方法，接收每个select改变后的值，再改变父组件的数">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-11-15T07:50:20.977Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="橘子小窝">
-<meta name="twitter:description" content="狗狗的一生很短,等你的时间却最长">
+<meta name="twitter:title" content="在组件上使用v-model">
+<meta name="twitter:description" content="最近写了个select组件，添加了几个功能，如option过滤，设置默认值，添加change方法告知父组件等。然后，提交后被返工了 💔现在，重新审视自己的代码。发现最大的问题就是代码冗余：我并没有在父组件上使用v-model,所有的数据改变都是通过子组件change调用父组件方法，再去改变父组件的数据。如果有多个select，那就需要添加多个方法，接收每个select改变后的值，再改变父组件的数">
 
 
 
 
 
 
-  <link rel="canonical" href="https://volcano0107.github.io/"/>
+  <link rel="canonical" href="https://volcano0107.github.io/2018/11/14/在组件上使用v-model/"/>
 
 
 
@@ -135,7 +136,7 @@
   };
 </script>
 
-  <title>橘子小窝</title>
+  <title>在组件上使用v-model | 橘子小窝</title>
   
 
 
@@ -182,8 +183,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -220,7 +220,7 @@
         
         
           
-          <li class="menu-item menu-item-主页 menu-item-active">
+          <li class="menu-item menu-item-主页">
     <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />主页</a>
   </li>
@@ -303,9 +303,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -337,11 +337,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/14/在组件上使用v-model/" itemprop="url">
-                  在组件上使用v-model
-                </a>
+          <h2 class="post-title" itemprop="name headline">在组件上使用v-model
               
             
           </h2>
@@ -398,162 +394,13 @@
           
 
           
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>最近写了个<code>select</code>组件，添加了几个功能，如<code>option</code>过滤，设置默认值，添加<code>change</code>方法告知父组件等。<br>然后，提交后被返工了 💔<br>现在，重新审视自己的代码。发现最大的问题就是代码冗余：<br>我并没有在父组件上使用<code>v-model</code>,所有的数据改变都是通过子组件<code>change</code>调用父组件方法，再去改变父组件的数据。<br>如果有多个<code>select</code>，那就需要添加多个方法，接收每个<code>select</code>改变后的值，再改变父组件的数据。<br>糟糕的代码就不展示了<br>现在开始整理自己的思路～</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/14/在组件上使用v-model/" rel="contents">
-              阅读更多 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://volcano0107.github.io/2018/11/09/key在vue中的使用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="橘子麻麻">
-      <meta itemprop="description" content="狗狗的一生很短,等你的时间却最长">
-      <meta itemprop="image" content="/images/logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="橘子小窝">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/09/key在vue中的使用/" itemprop="url">
-                  key在vue中的使用
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-11-09 14:15:54" itemprop="dateCreated datePublished" datetime="2018-11-09T14:15:54+08:00">2018-11-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">编辑于</span>
-                
-                <time title="Modified: 2018-11-12 11:34:02" itemprop="dateModified" datetime="2018-11-12T11:34:02+08:00">2018-11-12</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
           
 
           
@@ -573,16 +420,26 @@
       
 
       
-        
-          <h3 id="用key管理可复用的元素"><a href="#用key管理可复用的元素" class="headerlink" title="用key管理可复用的元素"></a>用<code>key</code>管理可复用的元素</h3><p>Vue 会尽可能高效地渲染元素，通常会复用已有元素而不是从头开始渲染。<br>例如官网的栗子：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">v-if</span>=<span class="string">"loginType === 'username'"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span>&gt;</span>Username<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">placeholder</span>=<span class="string">"Enter your username"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">v-else</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span>&gt;</span>Email<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">placeholder</span>=<span class="string">"Enter your email address"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/09/key在vue中的使用/" rel="contents">
-              阅读更多 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <p>最近写了个<code>select</code>组件，添加了几个功能，如<code>option</code>过滤，设置默认值，添加<code>change</code>方法告知父组件等。<br>然后，提交后被返工了 💔<br>现在，重新审视自己的代码。发现最大的问题就是代码冗余：<br>我并没有在父组件上使用<code>v-model</code>,所有的数据改变都是通过子组件<code>change</code>调用父组件方法，再去改变父组件的数据。<br>如果有多个<code>select</code>，那就需要添加多个方法，接收每个<code>select</code>改变后的值，再改变父组件的数据。<br>糟糕的代码就不展示了<br>现在开始整理自己的思路～</p>
+<a id="more"></a>
+<p><hr></p>
+<h3 id="在input上使用v-model"><a href="#在input上使用v-model" class="headerlink" title="在input上使用v-model"></a>在<code>input</code>上使用<code>v-model</code></h3><p>首先，我们需要了解的是，<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"searchText"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>等价于<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">:value</span>=<span class="string">"searchText"</span> @<span class="attr">input</span>=<span class="string">"searchText = $event.target.value"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>组件中</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">test-input</span> <span class="attr">v-model</span>=<span class="string">"searchText"</span>&gt;</span><span class="tag">&lt;/<span class="name">test-input</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>等价于<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">test-input</span> <span class="attr">:value</span>=<span class="string">"searchText"</span> @<span class="attr">input</span>=<span class="string">"searchText = $event"</span>&gt;</span><span class="tag">&lt;/<span class="name">test-input</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>如果你的组件是这样的：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"searchText"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">    name: <span class="string">'TestInput'</span>,</span></span><br><span class="line"><span class="undefined">    data () &#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">            searchText : <span class="string">''</span></span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>那么，使用如下代码并不会实现数据绑定。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">test-input</span> <span class="attr">v-model</span>=<span class="string">"inputValue"</span>&gt;</span><span class="tag">&lt;/<span class="name">test-input</span>&gt;</span></span><br><span class="line">    &#123;&#123; inputValue &#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> TestInput <span class="keyword">from</span> <span class="string">'@/components/Input.vue'</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="undefined">  data () &#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">      inputValue: <span class="string">'初始写的值'</span></span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;,</span></span><br><span class="line"><span class="undefined">  components: &#123;</span></span><br><span class="line"><span class="undefined">    TestInput</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>接下来，我们尝试进行双向绑定 </p>
+<p>对组件进行修改：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">:value</span>=<span class="string">"searchText"</span> @<span class="attr">input</span>=<span class="string">"searchText = $event.target.value"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>划重点：<br><div class="note success"><p>将其 value 特性绑定到一个名叫 value 的 prop 上<br>在其 input 事件被触发时，将新的值通过自定义的 input 事件抛出</p></div><br>代码如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span></span></span><br><span class="line"><span class="tag">            <span class="attr">type</span>=<span class="string">"text"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">:value</span>=<span class="string">"searchText"</span></span></span><br><span class="line"><span class="tag">            @<span class="attr">input</span>=<span class="string">"$emit('input',$event.target.value)"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">    props: [<span class="string">'value'</span>],</span></span><br><span class="line"><span class="undefined">    data () &#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">            searchText : <span class="string">''</span></span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>再次看一下调用组件的代码<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">test-input</span> <span class="attr">v-model</span>=<span class="string">"inputValue"</span>&gt;</span><span class="tag">&lt;/<span class="name">test-input</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>它相当于<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">test-input</span> <span class="attr">:value</span>=<span class="string">"inputValue"</span> @<span class="attr">input</span>=<span class="string">"inputValue = $event"</span>&gt;</span><span class="tag">&lt;/<span class="name">test-input</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>个人解释👇<br>这样，<code>input</code>会把组件的<code>inputValue</code>作为它的<code>value</code>值，同时，当<code>input</code>元素发生输入改变事件时，会通知父组件修改其<code>value</code>值。这样就实现了双向绑定。</p>
+<p>官方解释👇<br>这里的 <code>inputValue</code> 的值将会传入这个名为 <code>value</code> 的 <code>prop</code>。同时当 <code>&lt;test-input&gt;</code> 触发一个 <code>input</code> 事件并附带一个新的值的时候，这个 <code>inputValue</code> 的属性将会被更新。</p>
+<h3 id="在checkbox上使用v-model"><a href="#在checkbox上使用v-model" class="headerlink" title="在checkbox上使用v-model"></a>在<code>checkbox</code>上使用<code>v-model</code></h3><p>一个组件上的 <code>v-model</code> 默认会利用名为 <code>value</code>的 <code>prop</code>和名为 <code>input</code> 的事件。<br>但是像单选框、复选框等类型的输入控件可能会将 <code>value</code>特性用于不同的目的。<code>model</code> 选项可以用来避免这样的冲突：<br> 组件代码：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> </span></span><br><span class="line"><span class="tag">        <span class="attr">type</span>=<span class="string">"checkbox"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">:checked</span>=<span class="string">"checked"</span></span></span><br><span class="line"><span class="tag">        @<span class="attr">change</span>=<span class="string">"$emit('change',$event.target.checked)"</span></span></span><br><span class="line"><span class="tag">    /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="undefined">    model: &#123;</span></span><br><span class="line"><span class="javascript">        prop: <span class="string">'checked'</span>,</span></span><br><span class="line"><span class="javascript">        event: <span class="string">'change'</span></span></span><br><span class="line"><span class="undefined">    &#125;,</span></span><br><span class="line"><span class="javascript">    props: [<span class="string">'checked'</span>],</span></span><br><span class="line"><span class="undefined">    data () &#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">            checked: <span class="literal">false</span></span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>更多组件的特性还需要深入了解～fighting</p>
+
       
     </div>
 
@@ -591,6 +448,15 @@
     
     
     
+    
+      <div>
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束 <i class="fa fa-paw"></i> 感谢您的阅读-------------</div>
+    
+</div>
+
+      <div>
     
 
     
@@ -601,316 +467,36 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://volcano0107.github.io/2018/11/07/echarts使用之关系图详细配置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="橘子麻麻">
-      <meta itemprop="description" content="狗狗的一生很短,等你的时间却最长">
-      <meta itemprop="image" content="/images/logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="橘子小窝">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/07/echarts使用之关系图详细配置/" itemprop="url">
-                  echarts使用之关系图详细配置
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-11-07 18:17:24" itemprop="dateCreated datePublished" datetime="2018-11-07T18:17:24+08:00">2018-11-07</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">编辑于</span>
-                
-                <time title="Modified: 2018-11-08 17:07:21" itemprop="dateModified" datetime="2018-11-08T17:07:21+08:00">2018-11-08</time>
-              
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/vue/" rel="tag"><i class="fa fa-tag"></i> vue</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          <p>近期使用<code>echarts</code>的关系图，繁多的配置项让人头疼。只能一直百度，但百度依旧让人摸不到头脑。<br>因此，基于网上的一篇”人民的名义关系图谱”关系图和实际项目需求，整理以下配置。<br>想配置什么，就查看更多，然后通过关键字 <code>ctrl</code>+<code>f</code> 查询一下吧～如果不能满足你的需求，就移步 <a href="http://www.echartsjs.com/option3.html#series-graph" target="_blank" rel="noopener">echarts官网</a>查看详细配置<br>❤️希望每个人都可以少走一些弯路❤️<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/07/echarts使用之关系图详细配置/" rel="contents">
-              阅读更多 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/09/key在vue中的使用/" rel="next" title="key在vue中的使用">
+                <i class="fa fa-chevron-left"></i> key在vue中的使用
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://volcano0107.github.io/2018/11/07/element-ui-前端分页实现/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="橘子麻麻">
-      <meta itemprop="description" content="狗狗的一生很短,等你的时间却最长">
-      <meta itemprop="image" content="/images/logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="橘子小窝">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/07/element-ui-前端分页实现/" itemprop="url">
-                  element-ui 前端分页实现
-                </a>
-              
+          <div class="post-nav-prev post-nav-item">
             
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-11-07 15:31:12 / Modified: 18:46:57" itemprop="dateCreated datePublished" datetime="2018-11-07T15:31:12+08:00">2018-11-07</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p>一般情况下，获取表格数据时，我们会根据<code>pageSize</code>(每页数据量)和<code>pageIndex</code>(当前页数)进行查询，无论是<code>pageSize</code>还是<code>pageIndex</code>改变，我们都重新调接口获取数据，进行渲染。<br>但是，有些情况下，数据一次性全部给到前端，前端需要对数据进行过滤并渲染。<br>此次主要基于<code>elment-ui</code>的分页进行举例，分页的基本思想是一致的。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/07/element-ui-前端分页实现/" rel="contents">
-              阅读更多 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -920,337 +506,15 @@
   </article>
 
 
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://volcano0107.github.io/2018/10/17/test/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="橘子麻麻">
-      <meta itemprop="description" content="狗狗的一生很短,等你的时间却最长">
-      <meta itemprop="image" content="/images/logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="橘子小窝">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/17/test/" itemprop="url">
-                  test
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-10-17 19:09:59" itemprop="dateCreated datePublished" datetime="2018-10-17T19:09:59+08:00">2018-10-17</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">编辑于</span>
-                
-                <time title="Modified: 2018-10-18 13:21:18" itemprop="dateModified" datetime="2018-10-18T13:21:18+08:00">2018-10-18</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote class="blockquote-center">开篇或结束引用</blockquote>
-
-<h3 id="这是一篇测试文章"><a href="#这是一篇测试文章" class="headerlink" title="这是一篇测试文章"></a>这是一篇测试文章</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i lalala</span><br></pre></td></tr></table></figure>
-<blockquote><p>这里面是代码块</p>
-</blockquote>
-<p>标签插件添加样式  default  warning success info danger<br><div class="note warning"><p>内容warning</p></div><br><div class="note success"><p>内容success</p></div></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/17/test/" rel="contents">
-              阅读更多 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://volcano0107.github.io/2018/10/16/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="橘子麻麻">
-      <meta itemprop="description" content="狗狗的一生很短,等你的时间却最长">
-      <meta itemprop="image" content="/images/logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="橘子小窝">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/16/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-10-16 18:42:22" itemprop="dateCreated datePublished" datetime="2018-10-16T18:42:22+08:00">2018-10-16</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">编辑于</span>
-                
-                <time title="Modified: 2018-10-18 11:59:46" itemprop="dateModified" datetime="2018-10-18T11:59:46+08:00">2018-10-18</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -1271,8 +535,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            内容目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1342,6 +615,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#在input上使用v-model"><span class="nav-number">1.</span> <span class="nav-text">在input上使用v-model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在checkbox上使用v-model"><span class="nav-number">2.</span> <span class="nav-text">在checkbox上使用v-model</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1493,6 +782,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
 
   
 
