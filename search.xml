@@ -37,15 +37,7 @@
     <url>%2F2018%2F10%2F17%2Ftest%2F</url>
     <content type="text"><![CDATA[开篇或结束引用 这是一篇测试文章1npm i lalala 这里面是代码块 标签插件添加样式 default warning success info danger内容warning内容success]]></content>
       <tags>
-        <tag>哈哈</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2F2018%2F10%2F16%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
-      <tags>
-        <tag>呵呵</tag>
+        <tag>测试</tag>
       </tags>
   </entry>
 </search>
